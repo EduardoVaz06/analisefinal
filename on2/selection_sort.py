@@ -2,9 +2,12 @@ import random
 import time
 import numpy as np
 
+import vetores
+
 
 def selection_sort(arr):
     start_time_1 = time.perf_counter()
+    print("Começando ")
     n = len(arr)
 
     for i in range(n - 1):
@@ -16,7 +19,7 @@ def selection_sort(arr):
         arr[i], arr[min_index] = arr[min_index], arr[i]
     end_time_1 = time.perf_counter()
     execution_time_1 = end_time_1 - start_time_1
-    #print("Tempo de execução:", execution_time_1, "segundos")
+    print("Tempo de execução:", execution_time_1, "segundos")
     return arr
 
 
@@ -47,24 +50,30 @@ def selection_sort_improve(arr):
         right -= 1
     end_time2 = time.perf_counter()
     execution_time = end_time2 - start_time2
-    #print("Tempo de execução:", execution_time, "segundos")
+    print("Tempo de execução:", execution_time, "segundos")
     return arr
 
 
-#criando o array
-# Definir o tamanho do array
-size = 1000000
-# Gerar o array com números aleatórios não repetidos
-lista = np.random.choice(range(1, 2000000), size=size, replace=False)
-# Imprimir o array
-#print(lista)
+def execute_selection(arr, arr2):
+    lista1 = selection_sort(arr)
 
-sorted_list_1 = selection_sort(lista)
+    print("Selection Sort:")
+    print("Lista ordenada:", lista1[:5], "...", lista1[-5:])
 
-print("Selection Sort:")
-#print("Lista ordenada:", sorted_list_1)
+    lista2 = selection_sort_improve(arr2)
 
-sorted_list2 = selection_sort_improve(lista)
+    print("Selection Sort Aprimorado:")
+    print("Lista ordenada:", lista2[:5], "...", lista2[-5:])
 
-print("Selection Sort Aprimorado:")
-#print("Lista ordenada:", sorted_list2)
+
+tamanho_vetor = 10000
+vetor_aleatorio1 = vetores.vetor_aleatorio(tamanho_vetor)
+vetor_aleatorio2 = vetor_aleatorio1
+vetor_ordenado1 = vetores.vetor_ordenado(tamanho_vetor)
+vetor_ordenado2 = vetor_ordenado1
+vetor_semiordenado1 = vetores.vetor_quase_ordenado(tamanho_vetor)
+vetor_semiordenado2 = vetor_semiordenado1
+vetor_inverso1 = vetores.vetor_inversamente_ordenado(tamanho_vetor)
+vetor_inverso2 = vetor_inverso1
+
+execute_selection(vetor_aleatorio1, vetor_aleatorio2)
