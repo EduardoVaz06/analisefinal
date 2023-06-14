@@ -8,14 +8,17 @@ def insertion_sort(arr):
     start_time = time.time()
     n = len(arr)
 
+    # Percorre o array a partir do segundo elemento
     for i in range(1, n):
         key = arr[i]
         j = i - 1
 
+        # Move os elementos maiores que a chave para a direita
         while j >= 0 and arr[j] > key:
             arr[j + 1] = arr[j]
             j -= 1
 
+        # Insere a chave na posição correta
         arr[j + 1] = key
 
     end_time = time.time()
@@ -28,11 +31,13 @@ def binary_insertion_sort(arr):
     start_time = time.time()
     n = len(arr)
 
+    # Percorre o array a partir do segundo elemento
     for i in range(1, n):
         key = arr[i]
         left = 0
         right = i - 1
 
+        # Realiza a busca binária para encontrar a posição correta da chave
         while left <= right:
             mid = (left + right) // 2
             if key < arr[mid]:
@@ -40,9 +45,11 @@ def binary_insertion_sort(arr):
             else:
                 left = mid + 1
 
+        # Move os elementos maiores que a chave para a direita
         for j in range(i - 1, left - 1, -1):
             arr[j + 1] = arr[j]
 
+        # Insere a chave na posição correta
         arr[left] = key
 
     end_time = time.time()
@@ -64,14 +71,14 @@ def execute_insertion(arr, arr2):
 
 
 #criar o vetor a partir do vetores.py e escolher o tamanho
-tamanho_vetor = 1000
+tamanho_vetor = 1000000
 vetor_aleatorio1 = vetores.vetor_aleatorio(tamanho_vetor)
-vetor_aleatorio2 = vetor_aleatorio1
+vetor_aleatorio2 = vetores.vetor_aleatorio(tamanho_vetor)
 vetor_ordenado1 = vetores.vetor_ordenado(tamanho_vetor)
-vetor_ordenado2 = vetor_ordenado1
+vetor_ordenado2 = vetores.vetor_aleatorio(tamanho_vetor)
 vetor_semiordenado1 = vetores.vetor_quase_ordenado(tamanho_vetor)
-vetor_semiordenado2 = vetor_semiordenado1
+vetor_semiordenado2 = vetores.vetor_aleatorio(tamanho_vetor)
 vetor_inverso1 = vetores.vetor_inversamente_ordenado(tamanho_vetor)
-vetor_inverso2 = vetor_inverso1
+vetor_inverso2 = vetores.vetor_aleatorio(tamanho_vetor)
 
-execute_insertion(vetor_aleatorio1, vetor_aleatorio2)
+execute_insertion(vetor_semiordenado1, vetor_semiordenado2)

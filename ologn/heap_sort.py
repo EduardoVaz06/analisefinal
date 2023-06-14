@@ -1,18 +1,23 @@
 import time
 import numpy as np
 
+import vetores
+
 
 def heapify(arr, n, i):
     largest = i
     left = 2 * i + 1
     right = 2 * i + 2
 
+    # Verifica se o filho esquerdo é maior que o nó atual
     if left < n and arr[left] > arr[largest]:
         largest = left
 
+    # Verifica se o filho direito é maior que o nó atual
     if right < n and arr[right] > arr[largest]:
         largest = right
 
+    # Se o maior valor não for o nó atual, troca os valores e faz a recursão para o nó trocado
     if largest != i:
         arr[i], arr[largest] = arr[largest], arr[i]
         heapify(arr, n, largest)
@@ -30,42 +35,6 @@ def heap_sort(arr):
     for i in range(n - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
-
-    end_time = time.time()
-    execution_time = end_time - start_time
-    print("Tempo de execução:", execution_time, "segundos")
-
-    return arr
-
-
-def heapify_improve(arr, n, i):
-    largest = i
-    left = 2 * i + 1
-    right = 2 * i + 2
-
-    if left < n and arr[left] > arr[largest]:
-        largest = left
-
-    if right < n and arr[right] > arr[largest]:
-        largest = right
-
-    if largest != i:
-        arr[i], arr[largest] = arr[largest], arr[i]
-        heapify(arr, n, largest)
-
-
-def heap_sort_improve(arr):
-    start_time = time.time()
-    n = len(arr)
-
-    # Construir o max heap começando do meio do array
-    for i in range(n // 2 - 1, -1, -1):
-        heapify_improve(arr, n, i)
-
-    # Extrair os elementos um por um
-    for i in range(n - 1, 0, -1):
-        arr[i], arr[0] = arr[0], arr[i]
-        heapify_improve(arr, i, 0)
 
     end_time = time.time()
     execution_time = end_time - start_time
@@ -99,11 +68,11 @@ def heap_sort2(arr):
     start_time2 = time.time()
     n = len(arr)
 
-    # Construir o max heap
+    # Constrói o max heap a partir do array
     for i in range(n // 2 - 1, -1, -1):
         heapify2(arr, n, i)
 
-    # Extrair os elementos um por um
+    # Extrai os elementos um por um, colocando-os na posição correta
     for i in range(n - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
         heapify2(arr, i, 0)
@@ -115,32 +84,22 @@ def heap_sort2(arr):
     return arr
 
 
+def execute_heap(arr, arr2):
+    arr = heap_sort(arr)
+    print("Array ordenado:", arr[:5], "...", arr[-5:])
 
-# criando o array
-size = 500000
-# Gerar o array com números aleatórios não repetidos
-lista = np.random.choice(range(1, 600000), size=size, replace=False)
-lista2 = lista
-# Imprimir o array
-# print(lista)
-
-# size = 1000000
-# sorted_part = np.arange(size//3)  # Primeira parte ordenada
-# random_part = np.random.choice(range(size//3, 2*size//3), size//3, replace=False)  # Parte desordenada
-# sorted_part_2 = np.arange(2*size//3, size)  # Segunda parte ordenada
-#
-# partially_sorted_array = np.concatenate((sorted_part, random_part, sorted_part_2))
-#
-# partially_sorted_array2 = partially_sorted_array
-
-# Calcular o tempo de execução
-sorted_arr = heap_sort(lista)
-print("Array ordenado:", sorted_arr)
-
-sorted_arr2 = heap_sort2(lista2)
-print("Array ordenado 2", sorted_arr2)
-
-# sorted_arr_improve = heap_sort_improve(partially_sorted_array2)
-# print("Array ordenado:", sorted_arr_improve)
+    arr2 = heap_sort2(arr2)
+    print("Array ordenado 2", arr2[:5], "...", arr2[-5:])
 
 
+tamanho_vetor = 1000000
+vetor_aleatorio1 = vetores.vetor_aleatorio(tamanho_vetor)
+vetor_aleatorio2 = vetores.vetor_aleatorio(tamanho_vetor)
+vetor_ordenado1 = vetores.vetor_ordenado(tamanho_vetor)
+vetor_ordenado2 = vetores.vetor_aleatorio(tamanho_vetor)
+vetor_semiordenado1 = vetores.vetor_quase_ordenado(tamanho_vetor)
+vetor_semiordenado2 = vetores.vetor_aleatorio(tamanho_vetor)
+vetor_inverso1 = vetores.vetor_inversamente_ordenado(tamanho_vetor)
+vetor_inverso2 = vetores.vetor_aleatorio(tamanho_vetor)
+
+execute_heap(vetor_semiordenado1, vetor_semiordenado2)

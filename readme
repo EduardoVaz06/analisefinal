@@ -1,0 +1,15 @@
+Para a execução do código:
+Cada arquivo tem as respectivas definições prontas dos algoritmos classicos
+e modificados.
+Também, tem uma função de execução pronta para realizar os testes.
+
+Basta, em cada arquivo:
+Mudar o tamanho do vetor desejado em [#criar o vetor a partir do vetores.py e escolher o tamanho
+tamanho_vetor = 1000000]
+
+Mudar a chamada da função execute com o tipo de vetor desejado em [#escolher o tipo de vetor e executar
+execute_bubble(vetor_semiordenado1, vetor_inverso1)]
+[#escolher o tipo de vetor e executar
+execute_bubble(vetor_aleatorio1, vetor_aleatorio2)]...
+
+Executar, então, por arquivo.
